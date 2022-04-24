@@ -1,12 +1,23 @@
+//Factory function
+//we use returnn statement
 
-const circel = {
-    radius : 2,
-    location: {
-        x:2,
-        y:3
-    },
-    draw: function(){
-        console.log('draw');
+function createcCircle(radius){
+    return{
+        radius,
+        draw: function(){
+            console.log('draw');
+        }
     }
 };
-circel.draw();
+createcCircle(2).radius;
+
+//Constructor Function
+//First letter of the function name must be Upper
+//we use this statement instead of return along with new
+
+function Circle(radius) {
+    this.radius = radius;
+    this.draw = function(){
+        console.log('draw');
+    }
+}
