@@ -1,23 +1,42 @@
-//Factory function
-//we use returnn statement
+ function Stopwatch() {
+     let startTime, endTime, running, duration = 0;
 
-function createcCircle(radius){
-    return{
-        radius,
-        draw: function(){
-            console.log('draw');
-        }
-    }
-};
-createcCircle(2).radius;
+     this.start = function () {
+         if (running) {
+             throw new Error('Already Running');
+         }
+        else{
+             running = true;
+             startTime = new Date();
+         }
 
-//Constructor Function
-//First letter of the function name must be Upper
-//we use this statement instead of return along with new
+     }
+     this.stop = function () {
+         if (!running) {
+             throw new Error('stopwatch is not started');
+            }
+        else{
+             running = false;
 
-function Circle(radius) {
-    this.radius = radius;
-    this.draw = function(){
-        console.log('draw');
-    }
-}
+             endTime = new Date();
+
+             const seconds = (endTime.getTime() - startTime.getTime()) / 1000;
+             duration += seconds;
+         }
+
+     }
+     this.reset = function () {
+         startTime = null;
+         endTime = null;
+         running = false;
+         this.duration = 0;
+     }
+     Object.defineProperty(this, 'duration', {
+         get: function () {
+             duration = endTime - startTime;
+             return duration;
+         }
+     });
+ }
+
+ const sw = new Stopwatch();
