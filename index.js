@@ -40,3 +40,4 @@
  }
 
  const sw = new Stopwatch();
+ console.log(sw.duration);
